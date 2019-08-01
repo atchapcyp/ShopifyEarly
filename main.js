@@ -31,18 +31,28 @@ Hey = {
             });
         },
         product: function (json, target) {
-            let thumb = (json.images.length > 0) ? json.images[0].src : 'https://static1.squarespace.com/static/5a012e62a8b2b08dfb252872/t/5a0cfe13f9619aada94a05fc/1510800936269/32_100T_Logo_Red_DarkBG_1920x1080.png?format=600w';
-            return `
+            // Count how many variants are available in a single product.
+            let available = 0;
+            json.variants.forEach(item => {available += (item.available === true);});
+
+            // Get the thumbnail of the first variant, most likely primary.
+            let thumb = (json.images.length > 0) ? json.images[0].src : 'https://static1.squarespace.com/static/5a012e62a8b2b08dfb252872/t/5a0cfe13f9619aada94a05fc/1510800936269/32_100T_Logo_Red_DarkBG_1920x1080.png?format=400w';
+
+            // Create the contents of the product.
+            let product = `
             <div class="product bb hf ma-b-30 m-ma-b-30">
                 <div class="product-image br ma-b-10 m-ma-b-10" style="background: #0F0F0F url(${thumb}) no-repeat center;background-size: cover;"></div>
                 <h6 class="ma-b-10 m-ma-b-10">${json.title}</h6>
                 <div class="variants df mf sbf b-bg br wt">
                     ${json.variants.map((item) => `
-                        <a href="${target}/cart/${item.id}:1" class="blk csf wt pa-v-10 pa-h-15 m-pa-a-10">${item.title}</a>
+                        ${(item.available === true) ? `<a href="${target}/cart/${item.id}:1" class="blk csf wt pa-v-10 pa-h-15 m-pa-a-10">${item.title}</a>` : ``}
                     `.trim()).join('')}
                 </div>
             </div>
             `;
+
+            // If no variants are available, hide the product.
+            if (available > 0) return product;
         }
     }
 }
@@ -51,15 +61,21 @@ Hey.Satan.ready(function () {
     // Let's Get This Bread.
     const urlParams = new URLSearchParams(window.location.search);
     const target = 'https://' + urlParams.get('target');
-    axios.get(target + '/products.json') // Call the fetch function passing the url of the API as a parameter
+
+    // Make the call
+    axios.get(target + '/products.json')
+        // If it works
         .then(function(response) {
             let inventory = document.querySelector('#products');
             response.data.products.forEach(
-                product => inventory.insertAdjacentHTML('beforeend', Hey.Satan.product(product, target))
+                product => {
+                    let info = Hey.Satan.product(product, target);
+                    if (info !== undefined) inventory.insertAdjacentHTML('beforeend', info);
+                }
             );
 
-            return console.log(response.data.products);
         })
+        // If it fails
         .catch(function(error) {
             console.log(error);
         });
