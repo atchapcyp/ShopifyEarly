@@ -7,3 +7,4 @@ For now, I'm just doing quick add to cart links, but from time to time, it'll ev
 ### TODO:
 - Prefill name, address, and email at checkout
 - Select multiple items at once to check out (these add to carts links don't necessarily mean they're in your cart, so I wanna be sure I can create a better one-stop shop for people).
+- Better responsive design
