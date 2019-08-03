@@ -40,7 +40,7 @@ Hey = {
 
             // Create the contents of the product.
             let product = `
-            <div class="product bb hf ma-b-30 m-ma-b-30">
+            <div class="product bb hf ma-b-30 m-ma-b-30" ${(available === 0) ? `style="opacity: .4"` : ``}>
                 <div class="product-image br ma-b-10 m-ma-b-10" style="background: #0F0F0F url(${thumb}) no-repeat center;background-size: cover;"></div>
                 <h6 class="ma-b-10 m-ma-b-10">${json.title}</h6>
                 <div class="variants df mf sbf b-bg br wt">
@@ -52,7 +52,7 @@ Hey = {
             `;
 
             // If no variants are available, hide the product.
-            if (available > 0) return product;
+            return product;
         }
     }
 }
