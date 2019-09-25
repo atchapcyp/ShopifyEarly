@@ -1,6 +1,8 @@
 # Shopify Early
 
-### For Support, visit my Discord
+### "Gunslinger" update coming soon
+
+#### For Support, visit my Discord
 https://discord.gg/Sywduhg
 
 ### Add to cart right on time
