@@ -1,6 +1,6 @@
 # Shopify Early
 
-### "Gunslinger" update coming soon
+### "Gunslinger" now available for testing
 
 #### For Support, visit my Discord
 https://discord.gg/Sywduhg
@@ -26,7 +26,5 @@ Remember that the number behind each colon is the quantity count. For now, copy 
 
 ### TODO:
 - Prefill name, address, and email at checkout
-- Select multiple items at once to check out *(these add to carts links don't necessarily mean they're in your cart, so I wanna be sure I can create a better one-stop shop for people)*.
-- Better responsive design, simple UI/UX fixes *(Yeezy Supply is a perfect example of people unable to see all sizes in portrait mode due to more than 15 sizes being available at once, the only way to see the rest of the sizes is by rotating your phone into landscape, sorry about that, I'll be thinking of a good practical design to make sure you can see all sizes, or let you create preferences)*.
+- Select multipe items at once to check out *(these add to carts links don't necessarily mean they're in your cart, so I wanna be sure I can create a better one-stop shop for people)*.
 - Ability to bot
-- Local storage for prefill/settings *(If I'm gonna try to give people the ability to bot, I might as well find efficient ways for people to save/load settings. Man, I must be crazy for attempting all of this through a JS file)*.
