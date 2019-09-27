@@ -1,4 +1,10 @@
 # Shopify Early
+
+### "Gunslinger" update coming soon
+
+#### For Support, visit my Discord
+https://discord.gg/Sywduhg
+
 ### Add to cart right on time
 It was a quick, 30 minute code I decided to create so that the 100T fam could have an easier time to buy some apparel. But I realize that this has potential through just static code, no server really required. I decided to challenge myself, slowly build an app that runs on GitHub pages, something that creates processes and cop items without hassle.
 
