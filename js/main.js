@@ -98,7 +98,7 @@ Hey = {
 
                 let itemCount = 0;
 
-                 let cartData = JSON.parse(cart);
+                let cartData = JSON.parse(cart);
 
                 cartData.forEach(cartItem => {
                     itemCount++;
@@ -259,7 +259,7 @@ Hey = {
                         });
 
                         // Base the math on quantity
-                        cost += item.quantity * parseInt(foundProductVariant.price);
+                        cost += item.quantity * parseInt(foundProductVariant['price']);
                     }
                 });
 

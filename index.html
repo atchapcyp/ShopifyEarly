@@ -46,6 +46,11 @@
                 .product:nth-child(1n-2) {padding-right: 20px;}
                 .product:nth-child(3n) {padding-right: 0;}
             }
+
+            @media only screen and (max-width: 767px) {
+                #wrapper {flex-direction: column;}
+                #products {order: 2}
+            }
         </style>
     </head>
     <body class="df mf cf">
@@ -59,9 +64,9 @@
                 <h3 class="ma-b-5 m-ma-b-5 fw9" style="letter-spacing: 2px;"><em>SHOPIFY <span>EARLY</span></em></h3>
                 <h6 class="ma-b-30 m-ma-b-30 fw6 rt" style="letter-spacing: 2px;"><em>GUNSLINGER EDITION</em></h6>
             </div>
-            <div class="df m-ma-a-20">
+            <div id="wrapper" class="df mf m-ma-a-20">
                 <div id="products" class="tqf df rw ma-r-20"></div>
-                <div id="cart" class="qf br">
+                <div id="cart" class="qf br m-ma-b-20">
                     <div class="pa-a-20 m-pa-a-20 b-bg">
                         <h5 class="wt fw4 ma-b-10 m-ma-b-15" style="letter-spacing: 2px;"><em>CART</em></h5>
                         <div id="cart-items" class="ma-b-10 m-ma-b-10"></div>
