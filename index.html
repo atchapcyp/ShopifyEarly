@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Shopify Early | Satan</title>
+        <title>Shopify Early V2 | Satan</title>
         <meta property="og:url" content="https://early.satan.gg"/>
         <meta property="og:type" content="website"/>
         <meta property="og:title" content="Shopify Early | Satan"/>
@@ -13,31 +13,68 @@
         <meta property="og:image" content="fb.jpg"/>
         <meta property="fb:app_id" content="218783609031271"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.satan.gg/css/screw-frameworks.min.css" />
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="fonts.css" />
+        <script src="https://use.fontawesome.com/releases/v5.10.2/js/all.js"></script>
+        <script src="js/axios.js"></script>
+        <script src="js/main.js"></script>
         <style>
-            body {background: #fafdff;}
+            html,body {height: 100%;}
+            * {text-shadow: 0 0 2px rgba(0,0,0,.1);}
+            body {line-height: 21px;background-color: #F6F7FA;color: #333;}
+            body,button {font-family: 'Titillium Web', sans-serif;}
+
+            #container {flex: 0 1280px;}
             .fh {height: 87vh !important;}
             .product-image {height: 240px;}
+            .product-title {height: 42px;word-wrap: break-spaces;line-height: 21px;}
+            .variants {flex-wrap: nowrap;overflow-x: scroll;-webkit-overflow-scrolling: touch;}
+            .variants::-webkit-scrollbar {display: none;}
             .variants a:hover {background: rgba(255,255,255,.1);}
+
+            .cart-item:not(:last-child) {border-bottom: 1px solid rgba(255,255,255,.04);}
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
+            input[type=number] {-moz-appearance: textfield;}
+
+            input[type=number] {border: 1px solid rgba(255,255,255,.05);text-align:center;}
 
             @media only screen and (min-width: 768px) {
                 .fh {height: 100vh !important;}
                 #products {width: 980px;}
-                .product:nth-child(odd) {padding-right: 20px;}
+                .product {width: 33%;}
+                .product:nth-child(1n-2) {padding-right: 20px;}
+                .product:nth-child(3n) {padding-right: 0;}
             }
         </style>
     </head>
-    <body>
-        <div class="df mf">
-            <a href="https://satan.gg" class="iblk ma-h-a m-ma-h-a pa-a-30 m-pa-a-30">
-                <img src="https://satan.gg/logo.png" alt="サタン" title="Satan | Developer. Mechanic." height="75" id="logo" class="ma-b-20 m-ma-b-20"/>
-            </a>
+    <body class="df mf cf">
+        <div id="container">
+            <div class="df mf">
+                <a href="https://satan.gg" class="iblk ma-h-a m-ma-h-a pa-a-25 m-pa-a-25">
+                    <img src="https://satan.gg/logo.png" class="blk" alt="サタン" title="Satan | Developer. Mechanic." height="55" id="logo" />
+                </a>
+            </div>
+            <div class="tac ma-b-30 m-ma-b-30">
+                <h3 class="ma-b-5 m-ma-b-5 fw9" style="letter-spacing: 2px;"><em>SHOPIFY <span>EARLY</span></em></h3>
+                <h6 class="ma-b-30 m-ma-b-30 fw6 rt" style="letter-spacing: 2px;"><em>GUNSLINGER EDITION</em></h6>
+            </div>
+            <div class="df m-ma-a-20">
+                <div id="products" class="tqf df rw ma-r-20"></div>
+                <div id="cart" class="qf br">
+                    <div class="pa-a-20 m-pa-a-20 b-bg">
+                        <h5 class="wt fw4 ma-b-10 m-ma-b-15" style="letter-spacing: 2px;"><em>CART</em></h5>
+                        <div id="cart-items" class="ma-b-10 m-ma-b-10"></div>
+                        <em id="cart-loading" class="grt" style="letter-spacing: 2px;">LOADING...</em>
+                        <div id="cart-empty" class="grt none">Your cart is empty. Let's get this bread.</div>
+                        <div id="cart-price" class="df mf sbf wt fw7 none">
+                            <div class="ma-b-10 m-ma-b-10" style="letter-spacing: 2px;"><em>SUBTOTAL</em></div>
+                            <div><em id="cart-subtotal">$0</em></div>
+                        </div>
+                        <a href="javascript:void(0);" id="checkout-link" target="_blank" class="blk br tac pa-v-10 m-pa-v-10 ruby wt b none" style="letter-spacing: 2px;"><em>CHECKOUT</em></a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tac ma-b-30 m-ma-b-30">
-            <h4 class="ma-b-10 m-ma-b-10">Shopify Early</h4>
-            <h6>See what product variations are available on your favorite shopify site and add to cart directly.</h6>
-        </div>
-        <div id="products" class="ma-h-a m-ma-a-20 df rw"></div>
     </body>
 </html>
