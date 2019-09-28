@@ -239,7 +239,7 @@ Hey = {
                 empty.classList.add('none');
                 amount.classList.remove('none');
                 button.classList.remove('none');
-                button.setAttribute('href', 'https://' + Hey.Satan.target().replace(/\//g, '') + '/cart/' + items);
+                button.setAttribute('href', Hey.Satan.target() + '/cart/' + items);
 
                 // Update subtotal
                 let cost = 0;
