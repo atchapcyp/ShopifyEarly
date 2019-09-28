@@ -15,7 +15,7 @@ In order to search through a Shopify site of your choice, you just need to add a
 
 ##### Examples
 - `https://early.satan.gg/?target=shop.100thieves.com`
-- `https://early.satan.gg/?target=yeezysupply.com`
+- `https://early.satan.gg/?target=kith.com`
 
 Once you're in the Shopify site you want. Just refresh every few seconds when you're expecting the release. Remember that this is data loaded directly from Shopify, so what you see is the same as what you see on their site. I made sure to only hide what isn't available. Best of luck!
 
