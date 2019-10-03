@@ -138,7 +138,7 @@ Hey = {
             // Create the contents of the product.
             return `
             <div class="product tf bb ma-b-30 m-ma-b-30" ${(available === 0) ? `style="opacity: .4"` : ``}>
-                <div class="product-image fw-bg br ma-b-10 m-ma-b-10" style="background: #0F0F0F url(${thumb}) no-repeat center;background-size: cover;"></div>
+                <div class="product-image fw-bg br ma-b-10 m-ma-b-10" style="background: #0F0F0F url(${thumb}) no-repeat center;background-size: ${(json.images.length === 0) ? `80%` : `cover`};"></div>
                 <h6 class="product-title ma-b-10 m-ma-b-10">${json.title}</h6>
                 <div class="variants df mf b-bg br wt">
                     ${json['variants'].map((item) => `
