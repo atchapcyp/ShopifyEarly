@@ -20,7 +20,66 @@ Hey = {
         },
         // Serialize forms before submitting
         serialize: function (form) {
-            if(!form||form.nodeName!=="FORM"){return }let i,j,q=[];for(i=form.elements.length-1;i>=0;i=i-1){if(form.elements[i].name===""){continue}switch(form.elements[i].nodeName){case"INPUT":switch(form.elements[i].type){case"text":case"search":case"email":case"hidden":case"password":case"button":case"reset":case"submit":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"checkbox":case"radio":if(form.elements[i].checked){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value))}break;case"file":break}break;case"TEXTAREA":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"SELECT":switch(form.elements[i].type){case"select-one":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break;case"select-multiple":for(j=form.elements[i].options.length-1;j>=0;j=j-1){if(form.elements[i].options[j].selected){q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].options[j].value))}}break}break;case"BUTTON":switch(form.elements[i].type){case"reset":case"submit":case"button":q.push(form.elements[i].name+"="+encodeURIComponent(form.elements[i].value));break}break}}return q.join("&")
+            if (!form || form.nodeName !== "FORM") {
+                return
+            }
+            let i, j, q = [];
+            for (i = form.elements.length - 1; i >= 0; i = i - 1) {
+                if (form.elements[i].name === "") {
+                    continue
+                }
+                switch (form.elements[i].nodeName) {
+                    case"INPUT":
+                        switch (form.elements[i].type) {
+                            case"text":
+                            case"search":
+                            case"email":
+                            case"hidden":
+                            case"password":
+                            case"button":
+                            case"reset":
+                            case"submit":
+                                if (form.elements[i].value !== '') q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                break;
+                            case"checkbox":
+                            case"radio":
+                                if (form.elements[i].checked) {
+                                    q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value))
+                                }
+                                break;
+                            case"file":
+                                break
+                        }
+                        break;
+                    case"TEXTAREA":
+                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                        break;
+                    case"SELECT":
+                        switch (form.elements[i].type) {
+                            case"select-one":
+                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                break;
+                            case"select-multiple":
+                                for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
+                                    if (form.elements[i].options[j].selected) {
+                                        q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].options[j].value))
+                                    }
+                                }
+                                break
+                        }
+                        break;
+                    case"BUTTON":
+                        switch (form.elements[i].type) {
+                            case"reset":
+                            case"submit":
+                            case"button":
+                                q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i].value));
+                                break
+                        }
+                        break
+                }
+            }
+            return q.join("&")
         },
         contains: function (target, pattern) {
             let value = 0;
@@ -42,7 +101,7 @@ Hey = {
             // Make the call
             axios.get(Hey.Satan.target() + '/products.json')
                 // If it works
-                .then(function(response) {
+                .then(function (response) {
                     // Get inventory data
                     let data = response.data;
 
@@ -62,14 +121,16 @@ Hey = {
                     Hey.Satan.cart(data);
                 })
                 // If it fails
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log(error);
                 });
         },
         product: (json) => {
             // Count how many variants are available in a single product.
             let available = 0;
-            json['variants'].forEach(item => {available += (item['available'] === true);});
+            json['variants'].forEach(item => {
+                available += (item['available'] === true);
+            });
 
             // Get the thumbnail of the first variant, most likely primary.
             let thumb = (json.images.length > 0) ? json.images[0].src : 'https://static1.squarespace.com/static/5a012e62a8b2b08dfb252872/t/5a0cfe13f9619aada94a05fc/1510800936269/32_100T_Logo_Red_DarkBG_1920x1080.png?format=400w';
@@ -220,12 +281,12 @@ Hey = {
         updateCart: () => {
             let data = JSON.parse(localStorage.getItem('data'));
             let cart = JSON.parse(localStorage.getItem('cart'));
-            let button   = document.querySelector('#checkout-link');
-            let amount   = document.querySelector('#cart-price');
+            let button = document.querySelector('#checkout-link');
+            let amount = document.querySelector('#cart-price');
             let subtotal = document.querySelector('#cart-subtotal');
-            let loading  = document.querySelector('#cart-loading');
-            let empty    = document.querySelector('#cart-empty');
-            let items    = '';
+            let loading = document.querySelector('#cart-loading');
+            let empty = document.querySelector('#cart-empty');
+            let items = '';
 
             // Once the cart finishes loading initially.
             if (loading) loading.remove();
@@ -233,13 +294,17 @@ Hey = {
             // Now check for any differences.
             if (cart.length > 0) {
                 // Add ID's and Quantities into a string to prepare for checkout
-                cart.forEach((i, v) => {items += ((v !== 0) ? ',' : '') + i.variant + ':' + i.quantity});
+                cart.forEach((i, v) => {
+                    items += ((v !== 0) ? ',' : '') + i.variant + ':' + i.quantity
+                });
+
+                let prefill = localStorage.getItem('params');
 
                 // Show and update button and other elements for checkout
                 empty.classList.add('none');
                 amount.classList.remove('none');
                 button.classList.remove('none');
-                button.setAttribute('href', Hey.Satan.target() + '/cart/' + items);
+                button.setAttribute('href', Hey.Satan.target() + '/cart/' + items + ((prefill !== null || prefill !== 'undefined') ? '?' + JSON.parse(prefill) : ''));
 
                 // Update subtotal
                 let cost = 0;
@@ -264,7 +329,7 @@ Hey = {
                 });
 
                 Hey.Satan.clear(subtotal);
-                subtotal.insertAdjacentHTML('beforeend' ,`$` + cost);
+                subtotal.insertAdjacentHTML('beforeend', `$` + cost);
             } else {
                 // Hide button and update to prevent any bad clicks
                 empty.classList.remove('none');
@@ -272,12 +337,23 @@ Hey = {
                 button.classList.add('none');
                 button.setAttribute('href', 'javascript:void(0);');
             }
+        },
+        updatePrefill: () => {
+            let inputs = new URLSearchParams(JSON.parse(localStorage.getItem('params')));
+            document.querySelector('input[name="checkout[email]"]').value = inputs.get('checkout[email]');
+            document.querySelector('input[name="checkout[shipping_address][first_name]"]').value = inputs.get('checkout[shipping_address][first_name]');
+            document.querySelector('input[name="checkout[shipping_address][last_name]"]').value = inputs.get('checkout[shipping_address][last_name]');
+            document.querySelector('input[name="checkout[shipping_address][address1]"]').value = inputs.get('checkout[shipping_address][address1]');
+            document.querySelector('input[name="checkout[shipping_address][address2]"]').value = inputs.get('checkout[shipping_address][address2]');
+            document.querySelector('input[name="checkout[shipping_address][city]"]').value = inputs.get('checkout[shipping_address][city]');
+            document.querySelector('input[name="checkout[shipping_address][zip]"]').value = inputs.get('checkout[shipping_address][zip]');
         }
     }
 };
 
 Hey.Satan.ready(function () {
     Hey.Satan.inventory();
+    Hey.Satan.updatePrefill();
 
     // Listen to any click on the body and react to an item that matches the classes below.
     document.addEventListener('click', event => {
@@ -303,6 +379,12 @@ Hey.Satan.ready(function () {
             variant.quantity = box.value;
             localStorage.setItem('cart', JSON.stringify(cart));
             Hey.Satan.updateCart();
+        }));
+
+        // Detect prefill change
+        document.querySelectorAll('.early-input').forEach(input => input.addEventListener('focusout', event => {
+            let form = Hey.Satan.serialize(document.querySelector('#early-prefill'));
+            localStorage.setItem('params', JSON.stringify(form));
         }));
     });
 });

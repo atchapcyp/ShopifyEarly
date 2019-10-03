@@ -66,17 +66,51 @@
             </div>
             <div id="wrapper" class="df mf m-ma-a-20">
                 <div id="products" class="tqf df rw ma-r-20"></div>
-                <div id="cart" class="qf br m-ma-b-20">
-                    <div class="pa-a-20 m-pa-a-20 b-bg">
-                        <h5 class="wt fw4 ma-b-10 m-ma-b-15" style="letter-spacing: 2px;"><em>CART</em></h5>
-                        <div id="cart-items" class="ma-b-10 m-ma-b-10"></div>
-                        <em id="cart-loading" class="grt" style="letter-spacing: 2px;">LOADING...</em>
-                        <div id="cart-empty" class="grt none">Your cart is empty. Let's get this bread.</div>
-                        <div id="cart-price" class="df mf sbf wt fw7 none">
-                            <div class="ma-b-10 m-ma-b-10" style="letter-spacing: 2px;"><em>SUBTOTAL</em></div>
-                            <div><em id="cart-subtotal">$0</em></div>
+                <div id="sidebar" class="qf ma-b-20 m-ma-b-20">
+                    <div id="pre-fill" class="ma-b-20 m-ma-b-20">
+                        <div class="br pa-a-20 m-pa-a-20 b-bg">
+                            <h5 class="wt fw4 ma-b-15 m-ma-b-15" style="letter-spacing: 2px;"><em>PREFILL</em></h5>
+                            <form id="early-prefill" class="ma-b-10" name="early_prefill">
+                                <label for="checkout[email]" class="blk ma-b-15 m-ma-b-15"><input type="email" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[email]" placeholder="Email" /></label>
+                                <div class="df ma-b-15 m-ma-b-15">
+                                    <label for="checkout[shipping_address][first_name]" class="blk ma-r-15 m-ma-b-15">
+                                        <input type="text" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[shipping_address][first_name]" placeholder="First name" />
+                                    </label>
+                                    <label for="checkout[shipping_address][last_name]">
+                                        <input type="text" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[shipping_address][last_name]" placeholder="Last name.." />
+                                    </label>
+                                </div>
+                                <label for="checkout[shipping_address][address1]" class="blk ma-b-15 m-ma-b-15">
+                                    <input type="text" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[shipping_address][address1]" placeholder="Address" />
+                                </label>
+                                <label for="checkout[shipping_address][address2]" class="blk ma-b-15 m-ma-b-15">
+                                    <input type="text" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[shipping_address][address2]" placeholder="Apartment, unit, etc. (Optional)" />
+                                </label>
+                                <div class="df ma-b-15 m-ma-b-15">
+                                    <label for="checkout[shipping_address][city]" class="blk ma-r-15 m-ma-b-15">
+                                        <input type="text" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[shipping_address][city]" placeholder="City" />
+                                    </label>
+                                    <label for="checkout[shipping_address][zip]">
+                                        <input type="text" class="early-input blk fw bb pa-a-10 m-pa-a-10 br" name="checkout[shipping_address][zip]" placeholder="Zip code" />
+                                    </label>
+                                </div>
+                                <input type="hidden" value="fuck-your-xss-im-doing-this-for-the-people" />
+                            </form>
+                            <p class="grt">No I don't care about your info. Shut up.</p>
                         </div>
-                        <a href="javascript:void(0);" id="checkout-link" target="_blank" class="blk br tac pa-v-10 m-pa-v-10 ruby wt b none" style="letter-spacing: 2px;"><em>CHECKOUT</em></a>
+                    </div>
+                    <div id="cart">
+                        <div class="br pa-a-20 m-pa-a-20 b-bg">
+                            <h5 class="wt fw4 ma-b-15 m-ma-b-15" style="letter-spacing: 2px;"><em>CART</em></h5>
+                            <div id="cart-items" class="ma-b-10 m-ma-b-10"></div>
+                            <em id="cart-loading" class="grt" style="letter-spacing: 2px;">LOADING...</em>
+                            <div id="cart-empty" class="grt none">Your cart is empty. Let's get this bread.</div>
+                            <div id="cart-price" class="df mf sbf wt fw7 none">
+                                <div class="ma-b-10 m-ma-b-10" style="letter-spacing: 2px;"><em>SUBTOTAL</em></div>
+                                <div><em id="cart-subtotal">$0</em></div>
+                            </div>
+                            <a href="javascript:void(0);" id="checkout-link" target="_blank" class="blk br tac pa-v-10 m-pa-v-10 ruby wt b none" style="letter-spacing: 2px;"><em>CHECKOUT</em></a>
+                        </div>
                     </div>
                 </div>
             </div>
