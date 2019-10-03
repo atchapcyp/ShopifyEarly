@@ -385,6 +385,7 @@ Hey.Satan.ready(function () {
         document.querySelectorAll('.early-input').forEach(input => input.addEventListener('focusout', event => {
             let form = Hey.Satan.serialize(document.querySelector('#early-prefill'));
             localStorage.setItem('params', JSON.stringify(form));
+            Hey.Satan.updateCart();
         }));
     });
 });
