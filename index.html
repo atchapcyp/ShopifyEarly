@@ -23,22 +23,13 @@
             body {line-height: 21px;background-color: #F6F7FA;color: #333;}
             body,button {font-family: 'Titillium Web', sans-serif;}
 
-            #container {flex: 0 1280px;}
             .fh {height: 87vh !important;}
             .product-image {height: 240px;}
             .product-title {height: 42px;word-wrap: break-spaces;line-height: 21px;}
-            .variants {flex-wrap: nowrap;overflow-x: scroll;-webkit-overflow-scrolling: touch;}
+            .variants {flex-wrap: nowrap;overflow-x: scroll;-webkit-overflow-scrolling: touch;scrollbar-width: none;}
             .variants::-webkit-scrollbar {display: none;}
             .variants a:hover {background: rgba(255,255,255,.1);}
-            .variant {
-                -webkit-user-select: none; /* Chrome/Safari */
-                -moz-user-select: none; /* Firefox */
-                -ms-user-select: none; /* IE10+ */
-
-                /* Rules below not implemented in browsers yet */
-                -o-user-select: none;
-                user-select: none;
-            }
+            .variant {-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}
 
             .cart-item:not(:last-child) {border-bottom: 1px solid rgba(255,255,255,.04);}
 
@@ -49,6 +40,7 @@
             input[type=number] {border: 1px solid rgba(255,255,255,.05);text-align:center;}
 
             @media only screen and (min-width: 768px) {
+                #container {flex: 0 1280px;}
                 .fh {height: 100vh !important;}
                 #products {width: 980px;}
                 .product {width: 33%;}
@@ -59,6 +51,7 @@
             @media only screen and (max-width: 767px) {
                 #wrapper {flex-direction: column;}
                 #products {order: 2}
+                .variants {flex-direction: column}
             }
         </style>
     </head>
