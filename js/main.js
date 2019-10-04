@@ -15,6 +15,11 @@ Hey = {
             const urlParams = new URLSearchParams(window.location.search);
             return 'https://' + urlParams.get('target');
         },
+        targetKey: () =>{
+            // Let's Get This Bread.
+            const urlParams = new URLSearchParams(window.location.search);
+            return (new URL('https://' + urlParams.get('target'))).hostname.replace(/^|(.com|.net|.edu|.org|.gg|.io|.live|.com.au|.co.uk|.com.uk|.co|.biz|.dev)|/g, '').replace('.', '_');
+        },
         clear: (item) => {
             while (item.firstChild) item.removeChild(item.firstChild);
         },
@@ -150,7 +155,7 @@ Hey = {
         },
         cart: (data) => {
             // Load cart
-            let cart = localStorage.getItem('cart');
+            let cart = localStorage.getItem('cart_' + Hey.Satan.targetKey());
 
             Hey.Satan.updateCart();
 
@@ -210,13 +215,13 @@ Hey = {
 
             let cart = [];
 
-            if (localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
+            if (localStorage.getItem('cart_' + Hey.Satan.targetKey())) cart = JSON.parse(localStorage.getItem('cart_' + Hey.Satan.targetKey()));
 
             let variant = cart.find(product => product.variant === item.dataset.variant);
 
             if (variant) {
                 variant.quantity += 1;
-                localStorage.setItem('cart', JSON.stringify(cart));
+                localStorage.setItem('cart_' + Hey.Satan.targetKey(), JSON.stringify(cart));
 
                 let value = document.querySelector('#cart-' + item.dataset.variant + ' input[type=number]');
 
@@ -224,7 +229,7 @@ Hey = {
             } else {
                 cart.push({'variant': item.dataset.variant, 'quantity': 1});
 
-                localStorage.setItem('cart', JSON.stringify(cart));
+                localStorage.setItem('cart_' + Hey.Satan.targetKey(), JSON.stringify(cart));
 
                 // Get data for product
                 let foundProduct = data.find(product => {
@@ -271,16 +276,16 @@ Hey = {
                 let productVariant = document.querySelector('#variant-' + item.dataset.remove);
                 if (productVariant) productVariant.classList.remove('ruby');
 
-                let cart = JSON.parse(localStorage.getItem('cart'));
+                let cart = JSON.parse(localStorage.getItem('cart_' + Hey.Satan.targetKey()));
                 let products = cart.filter(product => product.variant !== item.dataset.remove.toString());
-                localStorage.setItem('cart', JSON.stringify(products));
+                localStorage.setItem('cart_' + Hey.Satan.targetKey(), JSON.stringify(products));
 
                 Hey.Satan.updateCart();
             }
         },
         updateCart: () => {
             let data = JSON.parse(localStorage.getItem('data'));
-            let cart = JSON.parse(localStorage.getItem('cart'));
+            let cart = JSON.parse(localStorage.getItem('cart_' + Hey.Satan.targetKey()));
             let button = document.querySelector('#checkout-link');
             let amount = document.querySelector('#cart-price');
             let subtotal = document.querySelector('#cart-subtotal');
@@ -292,7 +297,7 @@ Hey = {
             if (loading) loading.remove();
 
             // Now check for any differences.
-            if (cart.length > 0) {
+            if (cart !== null && cart.length > 0) {
                 // Add ID's and Quantities into a string to prepare for checkout
                 cart.forEach((i, v) => {
                     items += ((v !== 0) ? ',' : '') + i.variant + ':' + i.quantity
@@ -372,12 +377,12 @@ Hey.Satan.ready(function () {
 
             let cart = [];
 
-            if (localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
+            if (localStorage.getItem('cart_' + Hey.Satan.targetKey())) cart = JSON.parse(localStorage.getItem('cart_' + Hey.Satan.targetKey()));
 
             let variant = cart.find(product => product.variant === box.dataset.quantity);
 
             variant.quantity = box.value;
-            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('cart_' + Hey.Satan.targetKey(), JSON.stringify(cart));
             Hey.Satan.updateCart();
         }));
 
