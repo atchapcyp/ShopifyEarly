@@ -124,6 +124,8 @@ Hey = {
 
                     // Handle cart data
                     Hey.Satan.cart(data);
+
+                    Hey.Satan.slider();
                 })
                 // If it fails
                 .catch(function (error) {
@@ -145,9 +147,9 @@ Hey = {
             <div class="product tf bb ma-b-30 m-ma-b-30" ${(available === 0) ? `style="opacity: .4"` : ``}>
                 <div class="product-image fw-bg br ma-b-10 m-ma-b-10" style="background: #0F0F0F url(${thumb}) no-repeat center;background-size: ${(json.images.length === 0) ? `80%` : `cover`};"></div>
                 <h6 class="product-title ma-b-10 m-ma-b-10">${json.title}</h6>
-                <div class="variants df mf b-bg br wt">
+                <div class="variants df mf b-bg br wt cp">
                     ${json['variants'].map((item) => `
-                        ${(item['available'] === true) ? `<div id="variant-${item.id}" class="csf wt pa-v-10 pa-h-15 m-pa-a-10 cp" data-variant="${item.id}" style="flex: 0 0 auto;">${item.title}</div>` : ``}
+                        ${(item['available'] === true) ? `<div id="variant-${item.id}" class="variant csf wt pa-v-10 pa-h-15 m-pa-a-10 cp" data-variant="${item.id}" style="flex: 0 0 auto;"><div class="deep">${item.title}</div></div>` : ``}
                     `.trim()).join('')}
                 </div>
             </div>
@@ -352,6 +354,53 @@ Hey = {
             document.querySelector('input[name="checkout[shipping_address][address2]"]').value = inputs.get('checkout[shipping_address][address2]');
             document.querySelector('input[name="checkout[shipping_address][city]"]').value = inputs.get('checkout[shipping_address][city]');
             document.querySelector('input[name="checkout[shipping_address][zip]"]').value = inputs.get('checkout[shipping_address][zip]');
+        },
+        slider: () => {
+            document.querySelectorAll('.variants').forEach(slider => {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                function dragStart(e) {
+                    slider.classList.add('active');
+                    isDown = true;
+
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                }
+
+                function dragEnd() {
+                    isDown = false;
+                    slider.classList.remove('active');
+                    document.querySelectorAll('.variant').forEach(variant => variant.classList.remove('deep'));
+                }
+
+                function dragLeave() {
+                    isDown = false;
+                    slider.classList.remove('active');
+                    document.querySelectorAll('.variant').forEach(variant => variant.classList.remove('deep'));
+                }
+
+                function drag(e) {
+                    if (!isDown) return;
+                    e.preventDefault();
+
+                    document.querySelectorAll('.variant').forEach(variant => variant.classList.add('deep'));
+
+                    const x = e.pageX - slider.offsetLeft;
+                    const walk = x - startX; //scroll-fast
+                    slider.scrollLeft = scrollLeft - walk;
+                }
+
+                slider.addEventListener('touchstart', dragStart, false);
+                slider.addEventListener('touchend', dragLeave, false);
+                slider.addEventListener('touchmove', drag, false);
+
+                slider.addEventListener('mousedown', dragStart, false);
+                slider.addEventListener('mouseleave', dragLeave, false);
+                slider.addEventListener('mouseup', dragEnd, false);
+                slider.addEventListener('mousemove', drag, false);
+            });
         }
     }
 };

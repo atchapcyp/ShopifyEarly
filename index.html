@@ -30,6 +30,15 @@
             .variants {flex-wrap: nowrap;overflow-x: scroll;-webkit-overflow-scrolling: touch;}
             .variants::-webkit-scrollbar {display: none;}
             .variants a:hover {background: rgba(255,255,255,.1);}
+            .variant {
+                -webkit-user-select: none; /* Chrome/Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+ */
+
+                /* Rules below not implemented in browsers yet */
+                -o-user-select: none;
+                user-select: none;
+            }
 
             .cart-item:not(:last-child) {border-bottom: 1px solid rgba(255,255,255,.04);}
 
