@@ -149,7 +149,7 @@ Hey = {
                 <h6 class="product-title ma-b-10 m-ma-b-10">${json.title}</h6>
                 <div class="variants df mf b-bg br wt cp">
                     ${json['variants'].map((item) => `
-                        ${(item['available'] === true) ? `<div id="variant-${item.id}" class="variant csf wt pa-v-10 pa-h-15 m-pa-a-10 cp" data-variant="${item.id}" style="flex: 0 0 auto;"><div class="deep">${item.title}</div></div>` : ``}
+                        ${(item['available'] === true) ? `<div id="variant-${item.id}" class="variant csf wt pa-v-10 pa-h-15 m-pa-a-10 cp tac" data-variant="${item.id}" style="flex: 0 0 auto;"><div class="deep">${item.title}</div></div>` : ``}
                     `.trim()).join('')}
                 </div>
             </div>
